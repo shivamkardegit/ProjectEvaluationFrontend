@@ -1,0 +1,45 @@
+<div class="container mt-5">
+    <h2 class="mb-4">Product Management</h2>
+    
+    <!-- Form to Add or Update Product -->
+    <form (submit)="createOrUpdateProduct()" class="mb-4">
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <input type="text" class="form-control" [(ngModel)]="productForm.name" name="name" placeholder="Product Name" required />
+        </div>
+        <div class="col-md-4 mb-3">
+          <input type="number" class="form-control" [(ngModel)]="productForm.price" name="price" placeholder="Price" required />
+        </div>
+        <div class="col-md-4">
+          <button type="submit" class="btn btn-primary">
+            {{ productForm.id === 0 ? 'Add Product' : 'Update Product' }}
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+        </div>
+      </div>
+    </form>
+  
+    <!-- Product Table -->
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Operations</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.price }}</td>
+          <td>
+            <button class="btn btn-warning mr-2" (click)="editProduct(product)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
